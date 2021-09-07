@@ -58,7 +58,8 @@ def movie_diff(args, movie_path):
         video_writer = cv2.VideoWriter(f'{args.out_dir}/{args.out_movie}.{args.movie_extension}',
                                        fmt,
                                        int(cap.get(cv2.CAP_PROP_FPS)),
-                                       (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))))  # ライター作成
+                                       (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
+                                        int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))))  # ライター作成
 
     for i in tqdm(range(total_frame - 1)):
         ret, frame = cap.read()
@@ -74,7 +75,7 @@ def movie_diff(args, movie_path):
 
         whiteAreaRatio, blackAreaRatio = calc_black_whiteArea(thresh)
 
-        cv2.rectangle(thresh, (0,0), (int(W/2), 30), (255, 255, 255), thickness=-1)
+        cv2.rectangle(thresh, (0, 0), (int(W / 2), 30), (255, 255, 255), thickness=-1)
         cv2.putText(thresh, f'while : {str(whiteAreaRatio)} - brack : {str(blackAreaRatio)}',
                     (0, 30), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0, 0, 0), lineType=cv2.LINE_AA)
 
